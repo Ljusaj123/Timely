@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core'
-import { ProjectService } from 'src/app/services/project-service.service'
 import { Project } from 'src/model/project'
 
 @Component({
@@ -8,13 +7,9 @@ import { Project } from 'src/model/project'
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements OnInit {
-  projects: Project[] = []
+  @Input() projects: Project[] = []
 
-  constructor(private projectService: ProjectService) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.projectService
-      .getProjects()
-      .subscribe((result: Project[]) => (this.projects = result))
-  }
+  ngOnInit(): void {}
 }
