@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1250px;
+    width: 100%;
+}
+
+h1 {
+    font-size: 3rem;
+}
