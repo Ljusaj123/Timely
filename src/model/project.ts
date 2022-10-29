@@ -1,7 +1,7 @@
 export class Project {
   id?: number
-  projectName = ''
-  startDateString = ''
-  stopDateString = ''
-  duration = ''
+  projectName: string = '...'
+  startDateString: string = '...'
+  stopDateString: string = '...'
+  duration: string = '...'
 }
