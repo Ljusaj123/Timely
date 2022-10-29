@@ -7,7 +7,8 @@ import { ButtonComponent } from './components/button/button.component'
 import { DialogComponent } from './components/dialog/dialog.component'
 import { TableComponent } from './components/table/table.component'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
-import { ProjectsComponent } from './components/projects/projects.component'
+import { ProjectsComponent } from './components/projects/projects.component';
+import { EditComponent } from './components/edit/edit.component'
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ProjectsComponent } from './components/projects/projects.component'
     DialogComponent,
     TableComponent,
     ProjectsComponent,
+    EditComponent,
   ],
   imports: [BrowserModule, HttpClientModule, FontAwesomeModule],
   providers: [],
