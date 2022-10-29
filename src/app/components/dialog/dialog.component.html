@@ -1,1 +1,26 @@
-<p>dialog works!</p>
+<div class="dialog-container">
+  <div class="dialog">
+    <header>
+      <p>Stop Timer</p>
+      <div class="icon" (click)="closeDialog()" >
+        <fa-icon [icon]="faTimes" id="close-icon"></fa-icon>
+      </div>
+    </header>
+    <div class="project-container">
+      <div class="project-name">
+        <label for="project">Project name *</label>
+        <input
+          type="text"
+          id="project"
+          #projectNameInput
+          placeholder="project1"
+        />
+      </div>
+      <app-button
+        text="Stop timer"
+        (click)="handleDialog(projectNameInput.value)"
+      ></app-button>
+      <p *ngIf="errorMessage" class="error-msg">{{ errorMessage }}</p>
+    </div>
+  </div>
+</div>
