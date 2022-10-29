@@ -1,1 +1,7 @@
-<p>projects works!</p>
+<div class="container projects">
+    <app-button text="Start" (click)="openProjects($event.target)"></app-button>
+    <app-table *ngIf="startedCountingTime" [projects]="projects"></app-table>
+    <app-dialog *ngIf="stopedCountingTime" (projectName)="createProject($event)"></app-dialog>
+    <div>
+    </div>
+</div>
