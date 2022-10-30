@@ -1,13 +1,13 @@
-<div class="dialog-container">
-  <div class="dialog">
+<div class="popup-container dialog-container">
+  <div class="popup dialog">
     <header>
       <p>Stop Timer</p>
       <div class="icon" (click)="closeDialog()" >
         <fa-icon [icon]="faTimes" id="close-icon"></fa-icon>
       </div>
     </header>
-    <div class="project-container">
-      <div class="project-name">
+    <div class="projectName-container">
+      <div class="projectName">
         <label for="project">Project name *</label>
         <input
           type="text"
@@ -17,6 +17,7 @@
         />
       </div>
       <app-button
+        class="dialog-btn"
         text="Stop timer"
         (click)="handleDialog(projectNameInput.value)"
       ></app-button>
