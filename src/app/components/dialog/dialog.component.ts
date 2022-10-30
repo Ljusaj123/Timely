@@ -10,25 +10,26 @@ import { Project } from 'src/model/project'
 })
 export class DialogComponent implements OnInit {
   @Output() buttonName = new EventEmitter<string>()
-  @Output() close = new EventEmitter<boolean>()
+  @Output() isDialogOpen = new EventEmitter<boolean>()
+
   @Input() projects!: Project[]
   @Input() startDate!: Date
   @Input() stopedCountingTime!: boolean
-  name!: string
+
+  projectName!: string
   project!: Project
   stopDate!: Date
+  errorMessage!: string
 
   faTimes = faTimes
-  errorMessage = ''
 
   constructor(private projectService: ProjectService) {}
 
   ngOnInit(): void {}
 
   closeDialog() {
-    this.name = ''
-    this.buttonName.emit('Stop')
-    this.close.emit(false)
+    this.projectName = ''
+    this.isDialogOpen.emit(false)
   }
 
   handleDialog(name: string) {
@@ -36,12 +37,13 @@ export class DialogComponent implements OnInit {
       this.errorMessage = 'Enter the name of the project'
       return
     }
-    this.stopCounting()
     this.project.projectName = name
-    this.updateProject()
     this.errorMessage = ''
-    this.closeDialog()
     this.buttonName.emit('Start')
+
+    this.stopCounting()
+    this.updateProject()
+    this.closeDialog()
   }
 
   updateProject() {
@@ -53,19 +55,16 @@ export class DialogComponent implements OnInit {
   stopCounting() {
     this.project = this.projects[this.projects.length - 1]
     this.stopDate = new Date()
-    this.formatStopTime()
-    console.log(this.project.stopDateString)
+
+    this.project.stopDateString = `${this.stopDate.getDate()}.${
+      this.stopDate.getMonth() + 1
+    }.${this.stopDate.getFullYear()} ${this.stopDate.toString().slice(16, 21)}`
+
     this.countTime()
   }
 
   countTime() {
     const miliseconds = this.stopDate.getTime() - this.startDate.getTime()
     this.project.duration = new Date(miliseconds).toUTCString().slice(17, 22)
-  }
-
-  formatStopTime() {
-    this.project.stopDateString = `${this.stopDate.getDate()}.${
-      this.stopDate.getMonth() + 1
-    }.${this.stopDate.getFullYear()} ${this.stopDate.toString().slice(16, 21)}`
   }
 }

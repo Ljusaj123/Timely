@@ -11,7 +11,8 @@ export class EditComponent implements OnInit {
   @Input() project!: Project
   @Output() projectsUpdated = new EventEmitter<Project[]>()
   @Output() close = new EventEmitter<boolean>()
-  errorMessage = ''
+
+  errorMessage!: string
 
   constructor(private projectService: ProjectService) {}
 

@@ -18,11 +18,9 @@ export class ProjectsComponent implements OnInit {
 
   startDate!: Date
 
-  projectToUpdate!: Project
-
-  projects: Project[] = []
-
+  projects!: Project[]
   project!: Project
+
   constructor(private projectService: ProjectService) {}
 
   ngOnInit(): void {
@@ -34,18 +32,24 @@ export class ProjectsComponent implements OnInit {
   openProjects(element: any) {
     if (element.textContent == 'Start') {
       this.buttonName = 'Stop'
+
       this.project = new Project()
       this.startCounting()
       this.createProject()
+
       this.startedCountingTime = true
       this.stopedCountingTime = false
     } else {
       this.stopedCountingTime = true
     }
   }
-
-  setButtonName(name: string) {
-    this.buttonName = name
+  startCounting() {
+    this.startDate = new Date()
+    this.project.startDateString = `${this.startDate.getDate()}.${
+      this.startDate.getMonth() + 1
+    }.${this.startDate.getFullYear()} ${this.startDate
+      .toString()
+      .slice(16, 21)}`
   }
 
   createProject() {
@@ -54,21 +58,12 @@ export class ProjectsComponent implements OnInit {
       .subscribe((result: Project[]) => (this.projects = result))
   }
 
-  setClose(event: boolean) {
+  setButtonName(name: string) {
+    this.buttonName = name
+  }
+
+  closeDialog(event: boolean) {
     this.stopedCountingTime = event
-  }
-
-  startCounting() {
-    this.startDate = new Date()
-    this.formatStartTime()
-  }
-
-  formatStartTime() {
-    this.project.startDateString = `${this.startDate.getDate()}.${
-      this.startDate.getMonth() + 1
-    }.${this.startDate.getFullYear()} ${this.startDate
-      .toString()
-      .slice(16, 21)}`
   }
 
   exportTableToExcel(): void {

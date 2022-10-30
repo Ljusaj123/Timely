@@ -1,7 +1,7 @@
 <div class="container projects">
     <app-button class="time-btn" [text]="buttonName" (click)="openProjects($event.target)"></app-button>
     <app-table *ngIf="startedCountingTime" [projects]="projects"></app-table>
-    <app-dialog *ngIf="stopedCountingTime" [projects]="projects" [startDate]="startDate" (buttonName)="setButtonName($event)" (close)="setClose($event)"></app-dialog>
-    <app-button class="excel-btn"*ngIf="startedCountingTime" text="Export To Excel"(click)="exportTableToExcel()"></app-button>
+    <app-dialog *ngIf="stopedCountingTime" [projects]="projects" [startDate]="startDate" (buttonName)="setButtonName($event)" (isDialogOpen)="closeDialog($event)"></app-dialog>
+    <app-button class="excel-btn"*ngIf="startedCountingTime" text="Export To Excel" (click)="exportTableToExcel()"></app-button>
 
 </div>

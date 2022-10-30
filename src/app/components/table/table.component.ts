@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
-import { ProjectService } from 'src/app/services/project-service.service'
 import { Project } from 'src/model/project'
 
 @Component({
@@ -8,27 +7,27 @@ import { Project } from 'src/model/project'
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements OnInit {
-  @Input() projects: Project[] = []
+  @Input() projects!: Project[]
   @Output() projectsUpdated = new EventEmitter<Project[]>()
-  open!: boolean
 
+  open!: boolean
   projectToEdit!: Project
 
-  constructor(private projectService: ProjectService) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
   editProject(project: Project) {
     this.projectToEdit = project
-    this.open = true
+    this.setClose(true)
   }
 
   updateProjectList(projects: Project[]) {
     this.projects = projects
-    this.setClose()
+    this.setClose(false)
   }
 
-  setClose() {
-    this.open = false
+  setClose(event: boolean) {
+    this.open = event
   }
 }
