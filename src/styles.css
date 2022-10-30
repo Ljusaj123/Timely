@@ -6,10 +6,54 @@
 
 .container {
     margin: 0 auto;
-    max-width: 1250px;
+    max-width: 1150px;
     width: 100%;
 }
 
 h1 {
     font-size: 3rem;
 }
+
+header {
+    position: relative;
+    display: flex;
+    border-bottom: 1px solid black;
+    padding: 0.7em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    outline: none;
+    border-radius: 5px;
+    border-width: 1px;
+    padding: 0.5em 2em;
+    font-size: 1rem;
+    text-align: center;
+}
+
+
+.popup-container {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.popup {
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255,255,255);
+    padding: 2em;
+    gap: 1em;
+}
+
