@@ -1,14 +1,17 @@
 <div *ngIf="project" class="popup-container">
     <div class="popup edit">
-        <div class="edit-name">
+        <div class="edit-name" *ngIf="project.projectName!='...'">
             <h3>Enter new name:</h3>
             <input [(ngModel)]="project.projectName" placeholder="Project Name..." />
         </div>
         <div class="edit-buttons">
-            <app-button class="action-btn" text="Save" (click)="updateHero(project)" *ngIf="project.id"></app-button>
-            <app-button class="action-btn delete-btn" text="Delete"(click)="deleteHero(project)" *ngIf="project.id"></app-button>
+            <app-button class="action-btn" text="Save" (click)="updateProject(project)" *ngIf="project.projectName!='...'"></app-button>
+            <app-button class="action-btn delete-btn" text="Delete"(click)="deleteProject(project)" *ngIf="project.id"></app-button>
+            <app-button class="action-btn" text="Back" (click)="this.close.emit(false)" *ngIf="project.id"></app-button>
+
 
         </div>
+        <p *ngIf="errorMessage" class="error-msg">{{ errorMessage }}</p>
         
     </div>
 </div>

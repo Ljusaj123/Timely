@@ -10,18 +10,24 @@ import { Project } from 'src/model/project'
 export class EditComponent implements OnInit {
   @Input() project!: Project
   @Output() projectsUpdated = new EventEmitter<Project[]>()
+  @Output() close = new EventEmitter<boolean>()
+  errorMessage = ''
 
   constructor(private projectService: ProjectService) {}
 
   ngOnInit(): void {}
 
-  updateHero(project: Project) {
+  updateProject(project: Project) {
+    if (project.projectName == '') {
+      this.errorMessage = 'Enter the name of the project'
+      return
+    }
     this.projectService
       .updateProject(project)
       .subscribe((result: Project[]) => this.projectsUpdated.emit(result))
   }
 
-  deleteHero(project: Project) {
+  deleteProject(project: Project) {
     this.projectService
       .deleteProject(project)
       .subscribe((result: Project[]) => this.projectsUpdated.emit(result))

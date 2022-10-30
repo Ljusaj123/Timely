@@ -5,6 +5,10 @@
     justify-content: center;
 }
 
+.edit{
+    align-items: center;
+}
+
 .edit .edit-name{
     flex-direction: column;
 }
