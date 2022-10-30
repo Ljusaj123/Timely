@@ -25,6 +25,10 @@ export class TableComponent implements OnInit {
 
   updateProjectList(projects: Project[]) {
     this.projects = projects
+    this.setClose()
+  }
+
+  setClose() {
     this.open = false
   }
 }
