@@ -70,4 +70,15 @@ export class ProjectsComponent implements OnInit {
       .toString()
       .slice(16, 21)}`
   }
+
+  exportTableToExcel(): void {
+    const downloadLink = document.createElement('a')
+    const dataType = 'application/vnd.ms-excel'
+    const table = document.getElementById('table')
+    const tableHtml = table?.outerHTML.replace(/ /g, '%20')
+    document.body.appendChild(downloadLink)
+    downloadLink.href = `Data: ${dataType} ,${tableHtml}`
+    downloadLink.download = 'table.xls'
+    downloadLink.click()
+  }
 }

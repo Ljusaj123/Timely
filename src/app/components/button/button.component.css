@@ -26,3 +26,9 @@ button:active {
 .delete-btn{
     background-color: rgb(255, 0, 0);
 }
+
+.excel-btn{
+    background-color: rgb(26, 169, 36);
+    font-size: 0.7rem;
+    padding: 0.5em 1em;
+}

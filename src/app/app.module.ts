@@ -25,10 +25,3 @@ import { EditComponent } from './components/edit/edit.component'
   bootstrap: [AppComponent],
 })
 export class AppModule {}
-
-/*TO DO:
-
-1. FIX ON START BUTTON TO UPDATE TABLE
-2. PAGINATION
-3. EXPORT TO EXCEL
-*/
