@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core'
+import { elementAt } from 'rxjs'
 import { ProjectService } from 'src/app/services/project-service.service'
 import { Project } from 'src/model/project'
 
@@ -9,11 +10,15 @@ import { Project } from 'src/model/project'
 })
 export class ProjectsComponent implements OnInit {
   @Output() projectUpdated = new EventEmitter<Project[]>()
+
   startedCountingTime: boolean = false
   stopedCountingTime: boolean = false
 
+  buttonName: string = 'Start'
+
   startDate!: Date
-  stopDate!: Date
+
+  projectToUpdate!: Project
 
   projects: Project[] = []
 
@@ -27,39 +32,35 @@ export class ProjectsComponent implements OnInit {
   }
 
   openProjects(element: any) {
-    if (element.textContent === 'Stop') {
-      this.stopCounting()
-      element.textContent = 'Start'
-      this.stopedCountingTime = true
-    } else {
+    if (element.textContent == 'Start') {
+      this.buttonName = 'Stop'
       this.project = new Project()
       this.startCounting()
+      this.createProject()
       this.startedCountingTime = true
       this.stopedCountingTime = false
-      element.textContent = 'Stop'
+    } else {
+      this.stopedCountingTime = true
     }
   }
 
-  createProject(name: string) {
-    this.project.projectName = name
+  setButtonName(name: string) {
+    this.buttonName = name
+  }
+
+  createProject() {
     this.projectService
       .createProject(this.project)
       .subscribe((result: Project[]) => (this.projects = result))
   }
 
+  setClose(event: boolean) {
+    this.stopedCountingTime = event
+  }
+
   startCounting() {
     this.startDate = new Date()
     this.formatStartTime()
-  }
-  stopCounting() {
-    this.stopDate = new Date()
-    this.formatStopTime()
-    this.countTime()
-  }
-
-  countTime() {
-    const miliseconds = this.stopDate.getTime() - this.startDate.getTime()
-    this.project.duration = new Date(miliseconds).toUTCString().slice(17, 22)
   }
 
   formatStartTime() {
@@ -68,11 +69,5 @@ export class ProjectsComponent implements OnInit {
     }.${this.startDate.getFullYear()} ${this.startDate
       .toString()
       .slice(16, 21)}`
-  }
-
-  formatStopTime() {
-    this.project.stopDateString = `${this.stopDate.getDate()}.${
-      this.stopDate.getMonth() + 1
-    }.${this.stopDate.getFullYear()} ${this.stopDate.toString().slice(16, 21)}`
   }
 }
