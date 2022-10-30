@@ -1,1 +1,14 @@
-<p>edit works!</p>
+<div *ngIf="project" class="popup-container">
+    <div class="popup edit">
+        <div class="edit-name">
+            <h3>Enter new name:</h3>
+            <input [(ngModel)]="project.projectName" placeholder="Project Name..." />
+        </div>
+        <div class="edit-buttons">
+            <app-button class="action-btn" text="Save" (click)="updateHero(project)" *ngIf="project.id"></app-button>
+            <app-button class="action-btn delete-btn" text="Delete"(click)="deleteHero(project)" *ngIf="project.id"></app-button>
+
+        </div>
+        
+    </div>
+</div>

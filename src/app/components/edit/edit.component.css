@@ -1,0 +1,10 @@
+.edit div{
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit .edit-name{
+    flex-direction: column;
+}
