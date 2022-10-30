@@ -18,11 +18,12 @@ export class EditComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  updateProject(project: Project) {
-    if (project.projectName == '') {
+  updateProject(project: Project, name: string) {
+    if (!name) {
       this.errorMessage = 'Enter the name of the project'
       return
     }
+    this.project.projectName = name
     this.projectService
       .updateProject(project)
       .subscribe((result: Project[]) => this.projectsUpdated.emit(result))
@@ -32,5 +33,9 @@ export class EditComponent implements OnInit {
     this.projectService
       .deleteProject(project)
       .subscribe((result: Project[]) => this.projectsUpdated.emit(result))
+  }
+
+  handleBack() {
+    this.close.emit(false)
   }
 }

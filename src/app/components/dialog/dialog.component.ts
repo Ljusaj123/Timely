@@ -37,11 +37,10 @@ export class DialogComponent implements OnInit {
       this.errorMessage = 'Enter the name of the project'
       return
     }
+    this.stopCounting()
     this.project.projectName = name
     this.errorMessage = ''
     this.buttonName.emit('Start')
-
-    this.stopCounting()
     this.updateProject()
     this.closeDialog()
   }
